@@ -21,9 +21,20 @@ Route::post('nonpayment','OrderController@NonPayment');
 Route::post('OrderAll','OrderController@OrderAll');
 Route::post('NoReceiving','OrderController@NoReceiving');
 Route::post('NoComment','OrderController@NoComment');
+Route::post('OrderAdd','OrderController@OrderAdd');
+Route::post('OrderList','OrderController@OrderList');
 
 //地址
 Route::post('AddressAdd','AddressController@AddressAdd');
 Route::post('AddressUp','AddressController@AddressUp');
 Route::post('AddressDel','AddressController@AddressDel');
 Route::post('AddressShow','AddressController@AddressShow');
+
+
+//商品详情
+Route::post('GoodsSel','GoodsController@GoodsSel');
+//商品分类
+Route::post('GoodsCats','GoodsCatsController@GoodsCatsSel');
+//商品收藏
+Route::post('CollectAdd','CollectController@CollectAdd');
+

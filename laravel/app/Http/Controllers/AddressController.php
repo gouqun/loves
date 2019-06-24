@@ -10,11 +10,14 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Input;
 use Validator;
+use Illuminate\Http\Request;
 class AddressController extends BaseController
 {
     //地址添加
-    public function AddressAdd(){
+    public function AddressAdd(Request $request){
         $data = Input::post();
+        $data['user_id'] = $request->post('user')['user_id'];
+
         $rules = [
             'name' => 'required|max:20|regex:/\p{Han}/u',
             'address' => 'required|max:200',
@@ -34,20 +37,21 @@ class AddressController extends BaseController
         if(!$validate->passes()){
             $errors = $validate->messages()->all();
             $error = implode('/n',$errors);
-            return json_encode(['error'=>$error,'msg'=>1],JSON_UNESCAPED_UNICODE);
+            return json_encode(['code'=>1009,'msg'=>$error],JSON_UNESCAPED_UNICODE);
         }
         $data['user_id'] = $data['id'];
-        unset($data['id']);
+        $data['areaIdPath'] = $data['province'].'_'.$data['city'].'_'.$data['county'];
+        unset($data['id'],$data['province'],$data['city'],$data['county']);
         $res = Address::insert($data);
         if($res){
-            return json_encode(['success'=>'成功','msg'=>0],JSON_UNESCAPED_UNICODE);
+            return json_encode(['msg'=>'添加成功','code'=>1003],JSON_UNESCAPED_UNICODE);
         }else{
-            return json_encode(['error'=>'失败','msg'=>1],JSON_UNESCAPED_UNICODE);
+            return json_encode(['msg'=>'添加失败','code'=>1004],JSON_UNESCAPED_UNICODE);
         }
 
     }
     //地址编辑
-    public function AddressUp(){
+    public function AddressUp(Request $request){
         $data = Input::post();
         $rules = [
             'name' => 'required|max:20|regex:/\p{Han}/u',
@@ -68,29 +72,32 @@ class AddressController extends BaseController
         if(!$validate->passes()){
             $errors = $validate->messages()->all();
             $error = implode('/n',$errors);
-            return json_encode(['error'=>$error,'msg'=>1],JSON_UNESCAPED_UNICODE);
+            return json_encode(['code'=>1009,'msg'=>$error],JSON_UNESCAPED_UNICODE);
         }
-        unset($data['id']);
+        $data['areaIdPath'] = $data['province'].'_'.$data['city'].'_'.$data['county'];
+        unset($data['id'],$data['province'],$data['city'],$data['county']);
         $res = Address::where('address_id',$data['address_id'])->update($data);
         if($res){
-            return json_encode(['success'=>'成功','msg'=>0],JSON_UNESCAPED_UNICODE);
+            return json_encode(['code'=>1005,'msg'=>'修改成功'],JSON_UNESCAPED_UNICODE);
         }else{
-            return json_encode(['error'=>'失败','msg'=>1],JSON_UNESCAPED_UNICODE);
+            return json_encode(['code'=>1006,'msg'=>'修改失败'],JSON_UNESCAPED_UNICODE);
         }
     }
     //地址删除
-    public function AddressDel(){
-        $id = Input::post('id');
+    public function AddressDel(Request $request){
+        $id = Input::post('address_id');
+        $data['user_id'] = $request->post('user')['user_id'];
         $res = Address::where('address_id',$id)->delete();
         if($res){
-            return json_encode(['success'=>'成功','msg'=>0],JSON_UNESCAPED_UNICODE);
+            return json_encode(['code'=>1007,'msg'=>'删除成功'],JSON_UNESCAPED_UNICODE);
         }else{
-            return json_encode(['error'=>'失败','msg'=>0],JSON_UNESCAPED_UNICODE);
+            return json_encode(['code'=>1008,'msg'=>'删除失败'],JSON_UNESCAPED_UNICODE);
         }
     }
-    public function AddressShow(){
-        $id = Input::post('id');
+    public function AddressShow(Request $request){
+        $id = $request->post('user')['user_id'];
+
         $data = Address::where('user_id',$id)->get();
-        return json_encode(['success'=>'成功','msg'=>0,'data'=>$data],JSON_UNESCAPED_UNICODE);
+        return json_encode(['code'=>1000,'msg'=>'成功','data'=>$data],JSON_UNESCAPED_UNICODE);
     }
 }

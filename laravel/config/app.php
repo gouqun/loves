@@ -174,7 +174,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        App\Providers\GoodsCatsProvider::class,
+        App\Providers\GoodsProvider::class,
+        App\Providers\GoodsSpecsProvider::class,
     ],
 
     /*
@@ -225,7 +227,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'GoodsCats'=>App\Model\GoodsCats::class,
+        'Collect'=>App\Model\Collect::class,
+        'Goods'=>App\Model\Goods::class,
+        'GoodsSpecs'=>App\Model\GoodsSpecs::class,
     ],
 
 ];
