@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
 //            'hash' => false,
         ],
+
+        'apijwt'=>[
+            'driver'=>'jwt',
+            'provider'=>'jwt'
+        ]
     ],
 
     /*
@@ -70,6 +75,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Model\User::class,
         ],
+
+        'jwt' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\User::class,//对应第二步创建的
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

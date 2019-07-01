@@ -29,7 +29,11 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
+<<<<<<< HEAD
      * @param  \Exception  $exception
+=======
+     * @param \Exception $exception
+>>>>>>> origin/gouqun1
      * @return void
      */
     public function report(Exception $exception)
@@ -40,8 +44,13 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
+<<<<<<< HEAD
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
+=======
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception $exception
+>>>>>>> origin/gouqun1
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
