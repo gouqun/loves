@@ -23,6 +23,7 @@ Route::get('classifyList', 'ClassController@classList');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 //购物车列表
 Route::any('index','ShopController@index');
 //删除购物车商品
@@ -35,4 +36,27 @@ Route::any('show','CollectController@show');
 Route::any('cancel','CollectController@cancel');
 //为您推荐
 Route::any('recommend','RecommendController@recommend');
+
+//订单
+Route::post('nonpayment','OrderController@NonPayment');
+Route::post('OrderAll','OrderController@OrderAll');
+Route::post('NoReceiving','OrderController@NoReceiving');
+Route::post('NoComment','OrderController@NoComment');
+Route::post('OrderAdd','OrderController@OrderAdd');
+Route::post('OrderList','OrderController@OrderList');
+
+//地址
+Route::post('AddressAdd','AddressController@AddressAdd');
+Route::post('AddressUp','AddressController@AddressUp');
+Route::post('AddressDel','AddressController@AddressDel');
+Route::post('AddressShow','AddressController@AddressShow');
+
+
+//商品详情
+Route::post('GoodsSel','GoodsController@GoodsSel');
+//商品分类
+Route::post('GoodsCats','GoodsCatsController@GoodsCatsSel');
+//商品收藏
+Route::post('CollectAdd','CollectController@CollectAdd');
+
 

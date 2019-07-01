@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 use App\Models\Collect;
 use Illuminate\Http\Request;
@@ -29,7 +30,20 @@ class CollectController extends Controller{
             return response()->json(['code' => Response::HTTP_BAD_REQUEST,'msg' => '请求失败','data' => null]);
         }
     }
+    public function CollectAdd(Request $request)
+    {
+
+        $post = $request->post();
+        $res = Collect::CollectAdd($post);
+        if($res)
+        {
+            return response(['code'=>'1001','msg'=>'添加成功'],'201');
+        }else{
+            return response(['code'=>'1002','msg'=>'添加失败'],'201');
+        }
+    }
 }
 
 
 ?>
+
