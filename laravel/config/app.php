@@ -161,7 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -177,6 +177,10 @@ return [
         App\Providers\GoodsCatsProvider::class,
         App\Providers\GoodsProvider::class,
         App\Providers\GoodsSpecsProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        App\Providers\SmsServiceProvider::class,
+
+
     ],
 
     /*
@@ -231,6 +235,8 @@ return [
         'Collect'=>App\Model\Collect::class,
         'Goods'=>App\Model\Goods::class,
         'GoodsSpecs'=>App\Model\GoodsSpecs::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
     ],
 
 ];
