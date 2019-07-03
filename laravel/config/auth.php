@@ -42,10 +42,14 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'jwt',
             'provider' => 'users',
-            'hash' => false,
+//            'hash' => false,
         ],
+        'apijwt'=>[
+            'driver'=>'jwt',
+            'provider'=>'jwt'
+        ]
     ],
 
     /*
@@ -68,8 +72,12 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\model\User::class,
         ],
+        'jwt' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\User::class,//对应第二步创建的
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
