@@ -10,9 +10,9 @@ class GoodsCatsController extends Controller
     //简单的商品列表
     public function GoodsCatsSel(Request $request)
     {
-        $post = $request->post();
-        $data = GoodsCats::CatsSel($post['catId']);
+        $data = GoodsCats::CatsSel();
         return response([
+            'code'=>1001,
             'data'=>$data
         ],'201');
     }

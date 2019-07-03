@@ -18,22 +18,35 @@ class Goods extends Model
     {
         $dd = $this->with(['goodsspecs'=>function($query) use($goodsId)
         {
-            $query->where('goodsId',$goodsId);
+            $query->select('goodsId','specPrice','specImg','warnStockval')->where('goodsId',$goodsId)->where('dataFlag','1');
         }
         ])->find($goodsId)->toArray();
 
+        $dd['goodsImg'] = explode(',',rtrim($dd['goodsImg'],','));
+        foreach ($dd['goodsImg'] as $k =>$v)
+        {
+           $dd['goodsImg'][$k] =  env('HTTP_IMG').$v;
+        }
         if($dd['goodsspecs'] !== null)
         {
-            $warnStock= [];
-            $warnStockval = [];
             foreach ($dd['goodsspecs'] as $k => $v)
             {
+                $dd['goodsspecs'][$k] =[
+                    'img' => env('HTTP_IMG').$v['specImg'],
+                    'price' => (float)$v['specPrice'],
+                    'intro' => str_replace(',','-',rtrim($v['warnStockval'],','))
+                ];
 
-                $dd['goodsspecs'][$k]['warnStock'] = explode(',',rtrim($v['warnStock'],','));
-                $dd['goodsspecs'][$k]['warnStockval'] = explode(',',rtrim($v['warnStockval'],','));
             }
-
         }
+        $dd['marketPrice'] = (float)$dd['marketPrice'];
+
         return response(['code'=>'1001','data'=>$dd]);
+    }
+    public function SelGoods($catskey,$shopCatId)
+    {
+
+       return $this->where($catskey,$shopCatId)->where('dataFlag','1')->select('goodsName','shopPrice','brandId','appraiseNum','goodsImg')->paginate(16)->toarray();
+
     }
 }
