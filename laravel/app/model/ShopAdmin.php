@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ShopAdmin extends Authenticatable
 {
-    protected $table = "shop_admin";
+    protected $table = "shop_admin"; 
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $hidden = ['id'];
