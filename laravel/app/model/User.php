@@ -1,6 +1,6 @@
 <?php
 
-namespace App\model;
+namespace App\Model;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -41,6 +41,6 @@ class User extends Authenticatable implements JWTSubject
 
     public function UserInf()
     {
-        return $this->hasOne('App\model\UserInf','user_id','user_id');
+        return $this->hasOne('App\Model\UserInf','user_id','user_id');
     }
 }

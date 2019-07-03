@@ -1,6 +1,6 @@
 <?php
 
-namespace App\model;
+namespace App\Model;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 
 class ShopAdmin extends Authenticatable
 {
-    protected $table = "shop_admin"; 
+    protected $table = "shop_admin";
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $hidden = ['id'];
-//    protected $fillable = ['mobile_phone', 'login_name', 'password'];
+//  ssprotected $fillable = ['mobile_phone', 'login_name', 'password'];
 
 }

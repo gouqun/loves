@@ -31,6 +31,6 @@ class User extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'App\model\User';
+        return 'App\Model\User';
     }
 }

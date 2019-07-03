@@ -1,6 +1,6 @@
 <?php
 
-namespace App\model;
+namespace App\Model;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -15,7 +15,7 @@ class ShopReplys extends Authenticatable
     protected $hidden = ['admin_id','id'];
     public function one()
     {
-        return $this->hasOne('App\model\ShopAdmin','id','admin_id');
+        return $this->hasOne('App\Model\ShopAdmin','id','admin_id');
     }
     public function index(Request $request)
     {

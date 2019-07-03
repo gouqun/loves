@@ -31,6 +31,6 @@ class ShopAdmin extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'App\model\ShopAdmin';
+        return 'App\Model\ShopAdmin';
     }
 }

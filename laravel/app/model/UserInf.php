@@ -1,5 +1,5 @@
 <?php
-namespace App\model;
+namespace App\Model;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;

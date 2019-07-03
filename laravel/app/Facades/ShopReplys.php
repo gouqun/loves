@@ -31,6 +31,6 @@ class ShopReplys extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'App\model\ShopReplys';
+        return 'App\Model\ShopReplys';
     }
 }

@@ -31,6 +31,6 @@ class UserInf extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'App\model\UserInf';
+        return 'App\Model\UserInf';
     }
 }
